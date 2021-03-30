@@ -20,7 +20,7 @@ int rtc_init(int pulso) {
     /* una vez que tenemos el peiodo de interrupcion puesto, llamamos de nuevo al iocntl. Pero ahora sera RTC PIE (habilitamos las interrupciones que habilitamos arriba) */
     res = ioctl(rtc_fd, RTC_PIE_ON, 0);
     if(res<0){
-       printf("Error on init of RTC: Errno=%d",errno);
+       printf("Error on init of RTC: Errno=%d\n",errno);
        fflush(stdout);
     }
     return rtc_fd;
@@ -32,7 +32,7 @@ void rtc_tick(void) {
    /* Cada vez que hacemos un read, lo sincroniza con el periodo establecido. */
    res = read(rtc_fd, &data, sizeof(data));
    if(res<0){
-       printf("Error on rtc_tic: %d",errno);
+       printf("Error on rtc_tic: %d\n",errno);
        fflush(stdout);
    }
 }
@@ -43,7 +43,7 @@ void rtc_close(void) {
     res = ioctl(rtc_fd, RTC_PIE_OFF, 0);
     res = close(rtc_fd);
     if(res<0){
-       printf("Error on rtc_close: %d",errno);
+       printf("Error on rtc_close: %d\n",errno);
        fflush(stdout);
    }
 }
