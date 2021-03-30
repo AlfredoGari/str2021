@@ -20,15 +20,24 @@
  * 
  * 
  */
-
-
+#include "clock/rtc.h"
+#include "server/socket.h"
+#define RTC_TICK 4
 #include <stdio.h>
 
 int main(int argc, char **argv)
 {
-    rtc_init(8);
-    rtc_tick();
-    rtc_close();
+    int fd_rtc,i=0;
+    
+    /*fd_rtc = rtc_init(RTC_TICK);
+    
+    while(i<10){
+        printf("%d\n",i);
+         rtc_tick();
+         i++;
+    }
+    rtc_close();*/
+    socket_init();
     
 	return 0;
 }
